@@ -46,4 +46,43 @@ router.post('/register', async (req, res) => {
     }
 });
 
+//login route
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(400).json({ message: 'User does not exist' });
+        }
+
+       const isMatch = await bcrypt.compare(password, user.password)
+
+       if(!isMatch){
+        return res.status(400).json({message: 'invalid credentials'})
+       }
+
+       const payload = {
+            user: {
+                id: user.id
+            }
+        };
+
+        jwt.sign(
+            payload, 
+            process.env.JWT_SECRET, 
+            { expiresIn: 360000 }, 
+            (err, token) => {
+                if (err) throw err;
+                res.json({ token });
+            }
+        );
+
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
 export default router;
