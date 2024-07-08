@@ -1,10 +1,11 @@
 import express from "express";
 import Post from "../models/Post";
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
 //create posts
-router.post('/', async(req, res) => {
+router.post('/', auth ,async(req, res) => {
     const { title, content } = req.body;
 
     try{
@@ -13,7 +14,10 @@ router.post('/', async(req, res) => {
             content,
             author: req.user.id
         })
-        
+
+        const post = await newPost.save();
+        res.status(201).json(post);
+
     }catch(err){
         res.status(500).json({message: err.message});
     }
