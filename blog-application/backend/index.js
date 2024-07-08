@@ -4,6 +4,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+//routes
+import authRoute from '../backend/routes/auth.js';
+
 dotenv.config();
 const app = express();
 
@@ -20,6 +23,15 @@ mongoose.connect(
 .catch((error) => {
     console.error("Error connecting to the database:", error);
 });
+
+//Middleware
+app.use("/api/auth", authRoute);
+
+// Error handling middleware
+// app.use((err, req, res, next) => {
+//     console.error(err.stack);
+//     res.status(500).send('Something broke!');
+// });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
