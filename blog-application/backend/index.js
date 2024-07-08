@@ -6,6 +6,7 @@ import cors from 'cors';
 
 //routes
 import authRoute from '../backend/routes/auth.js';
+import postRoute from '../backend/routes/posts.js';
 
 dotenv.config();
 const app = express();
@@ -26,6 +27,7 @@ mongoose.connect(
 
 //Middleware
 app.use("/api/auth", authRoute);
+app.use("/api/posts", postRoute);
 
 // Error handling middleware
 // app.use((err, req, res, next) => {
