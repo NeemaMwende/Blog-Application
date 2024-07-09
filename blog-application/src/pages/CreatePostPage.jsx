@@ -1,7 +1,11 @@
 import React from 'react'
 
-export const CreatePostPage = () => {
+const CreatePostPage = () => {
   return (
-    <div>CreatePostPage</div>
+    <div>
+      <h1>create post</h1>
+    </div>
   )
 }
+
+export default CreatePostPage
