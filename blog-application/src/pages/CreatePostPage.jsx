@@ -15,7 +15,7 @@ const CreatePostPage = () => {
     }
 
     try {
-      const data = await api.createPost({ title, content }, token);
+      const data = await api.createPost({title, content}, token);
       // localStorage.setItem('token',data.token);
       console.log(data);
     } catch (error) {

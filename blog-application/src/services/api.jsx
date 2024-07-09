@@ -13,15 +13,15 @@ const login = async (userData) => {
 }
 
 
-const createPost = async (postData, token) => {
+const createPost = async (postData,token) => {
     const config = {
-        headers: {
+        headers:{
             'Authorization':`Bearer ${token}`,
         }
     };
-    const response = await axios.post(`${API_URL}/posts`, postData, config);
+    const response = await axios.post(`${API_URL}/posts`,postData,config);
     return response.data;
-};
+}
 
 
 const getPost = async (userData) => {
