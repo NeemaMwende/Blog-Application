@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import api from '../services/api';
 
 const LoginPage = () => {
 
@@ -7,18 +8,15 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/api/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-type':'application/json'
-      },
-      body:JSON.stringify({
-        email,
-        password
-      })
-    })
-    const data = await res.json();
-    console.log(data);
+    console.log(email, password)
+
+    try {
+      const data = await api.login({email, password});
+      console.log(data);
+
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
