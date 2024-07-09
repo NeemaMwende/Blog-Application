@@ -23,4 +23,16 @@ router.post('/', auth ,async(req, res) => {
     }
 });
 
+//get all posts
+router.get('/', async (req, res) => {
+    try {
+        const posts = await Post.find().populate('author', ['username']);
+        res.status(200).json(posts);
+
+
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+})
+
 export default router;
