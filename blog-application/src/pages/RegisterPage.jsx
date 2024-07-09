@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import api from '../services/api.jsx';
 
 const RegisterPage = () => {
 
@@ -8,19 +9,27 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/api/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-type':'application/json'
-      },
-      body:JSON.stringify({
-        username,
-        email,
-        password
-      })
-    })
-    const data = await res.json();
-    console.log(data);
+
+    try {
+      const data = await api.register({username, email, password});
+      console.log(data)
+      
+    } catch (error) {
+      console.log(error.message);
+    }
+    // const res = await fetch('http://localhost:5000/api/auth/register', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-type':'application/json'
+    //   },
+    //   body:JSON.stringify({
+    //     username,
+    //     email,
+    //     password
+    //   })
+    // })
+    // const data = await res.json();
+    // console.log(data);
   }
 
   return (
