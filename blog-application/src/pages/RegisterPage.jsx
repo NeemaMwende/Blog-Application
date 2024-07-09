@@ -6,13 +6,43 @@ const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await fetch('http://localhost:5000/api/auth/register', {
+      method: 'POST',
+      headers: {
+        'Content-type':'application/json'
+      },
+      body:JSON.stringify({
+        username,
+        email,
+        password
+      })
+    })
+    const data = await res.json();
+    console.log(data);
+  }
+
   return (
     <div>
-      <form action="">
-        <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type='submit'>Register</button>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="">Username</label>
+          <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
+        </div>  
+
+        <div>
+          <label htmlFor="">Email</label>
+          <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+          
+          <div>
+            <label htmlFor="">Password</label>
+            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+        
+          <button type='submit'>Register</button>
+
       </form>
     </div>
   )
