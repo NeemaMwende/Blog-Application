@@ -12,6 +12,7 @@ const LoginPage = () => {
 
     try {
       const data = await api.login({email, password});
+      localStorage.setItem('token',data.token);
       console.log(data);
 
     } catch (error) {
