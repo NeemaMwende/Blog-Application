@@ -8,7 +8,7 @@ const register = async (userData) => {
 }
 
 const login = async (userData) => {
-    const response = await axios.post(`${API_URL}/auth/list`, userData);
+    const response = await axios.post(`${API_URL}/auth/login`, userData);
     return response.data;
 }
 
@@ -16,16 +16,16 @@ const login = async (userData) => {
 const createPost = async (postData, token) => {
     const config = {
         headers: {
-            'x-auth-token':token
+            'Authorization':`Bearer ${token}`,
         }
-    }
-    const response = await axios.post(`${API_URL}/auth/posts`, postData,config);
+    };
+    const response = await axios.post(`${API_URL}/posts`, postData, config);
     return response.data;
-}
+};
 
 
 const getPost = async (userData) => {
-    const response = await axios.post(`${API_URL}/auth/posts`, userData);
+    const response = await axios.post(`${API_URL}/posts`, userData);
     return response.data;
 }
 

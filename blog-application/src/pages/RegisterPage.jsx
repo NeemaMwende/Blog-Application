@@ -12,6 +12,7 @@ const RegisterPage = () => {
 
     try {
       const data = await api.register({username, email, password});
+      localStorage.setItem('token',data.token);
       console.log(data)
       
     } catch (error) {
