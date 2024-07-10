@@ -16,19 +16,23 @@ const HomePage = () => {
     };
 
     fetchPosts();
-  }, []);
+  },[]);
 
   return (
     <div>
       <h1>Blog Website</h1>
-      <ul>
+      <div className='home'>
+      <ul className='blogpost'>
         {posts.map((post) => (
-          <li key={post._id}>
+          <li key={post._id} className='blogpoststyle'>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
+            <small>by : {post.username}</small>
           </li>
         ))}
       </ul>
+      </div>
+      
     </div>
   );
 };

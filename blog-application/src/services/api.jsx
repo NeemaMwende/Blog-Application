@@ -24,9 +24,9 @@ const createPost = async (postData,token) => {
 }
 
 
-const getPost = async (userData) => {
-    const response = await axios.post(`${API_URL}/posts`, userData);
+const getPosts = async (userData) => {
+    const response = await axios.get(`${API_URL}/posts`, userData);
     return response.data;
 }
 
-export default { register, login, getPost, createPost };
+export default { register, login, getPosts, createPost };
