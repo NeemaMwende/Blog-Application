@@ -28,7 +28,7 @@ const HomePage = () => {
             <h2>{post.title}</h2>
             <p>{post.content}</p>
             <small>by : {post.author.username}</small>
-            <small>by : {post.author.email}</small>
+            <small>email : {post.author.email}</small>
             <div className='btn'>
               <button>View</button>
               <button>Delete</button>
