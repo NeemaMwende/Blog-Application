@@ -27,7 +27,13 @@ const HomePage = () => {
           <li key={post._id} className='blogpoststyle'>
             <h2>{post.title}</h2>
             <p>{post.content}</p>
-            <small>by : {post.username}</small>
+            <small>by : {post.author.username}</small>
+            <small>by : {post.author.email}</small>
+            <div className='btn'>
+              <button>View</button>
+              <button>Delete</button>
+            </div>
+            
           </li>
         ))}
       </ul>
