@@ -4,13 +4,13 @@ import api from '../services/api';
 import "../pages/PostView.css";
 
 const PostView = () => {
-  const { postId } = useParams();
+  const { id } = useParams();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const data = await api.getPost(postId);
+        const data = await api.getPost(id);
         setPost(data);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -18,7 +18,7 @@ const PostView = () => {
     };
 
     fetchPost();
-  }, [postId]);
+  }, [id]);
 
   if (!post) {
     return <div>Loading...</div>;

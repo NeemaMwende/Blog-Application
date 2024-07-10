@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const [posts, getPosts] = useState([]);
+  // const navigate = useNavigate();
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -21,13 +24,13 @@ const HomePage = () => {
   },[]);
 
   const handleView = (postId) => {
-    navigate(`/posts/${postId}`);
+    navigate(`/post/${postId}`);
   };
 
   
   const handleDelete = async (postId) => {
     try {
-      await api.deletePost(postId);
+      await api.deletePost(postId, token);
       getPosts(posts.filter(post => post._id !== postId));
     } catch (error) {
       console.error('Error deleting post:', error);

@@ -12,7 +12,6 @@ const login = async (userData) => {
     return response.data;
 }
 
-
 const createPost = async (postData,token) => {
     const config = {
         headers:{
@@ -29,9 +28,19 @@ const getPosts = async (userData) => {
     return response.data;
 }
 
-const deletePost = async (userData) => {
-    const response = await axios.delete(`${API_URL}/posts`, userData);
+const deletePost = async (postId, token) => {
+    const config = {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        }
+      };
+    const response = await axios.delete(`${API_URL}/posts/${postId}`, config);
     return response.data;
 }
 
-export default { register, login, getPosts, createPost };
+const viewPost = async (postId) => {
+    const response = await axios.get(`${API_URL}/posts/${postId}`);
+    return response.data;
+  }
+
+export default { register, login, getPosts, createPost, deletePost, viewPost };
