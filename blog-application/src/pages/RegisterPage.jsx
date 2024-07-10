@@ -19,19 +19,6 @@ const RegisterPage = () => {
     } catch (error) {
       console.log(error.message);
     }
-    // const res = await fetch('http://localhost:5000/api/auth/register', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-type':'application/json'
-    //   },
-    //   body:JSON.stringify({
-    //     username,
-    //     email,
-    //     password
-    //   })
-    // })
-    // const data = await res.json();
-    // console.log(data);
   }
 
   return (
@@ -58,6 +45,7 @@ const RegisterPage = () => {
             <button type='submit'>Exit</button>
           </div>
 
+       <small>Already have an account? <a href="">Sign in here</a></small>
       </form>
     </div>
   )
