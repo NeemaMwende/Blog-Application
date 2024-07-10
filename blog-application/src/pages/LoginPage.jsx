@@ -23,6 +23,7 @@ const LoginPage = () => {
 
   return (
     <div>
+      <h3>Login <span>Page</span></h3>
       <form onSubmit={handleSubmit}>
 
         <div>
@@ -35,7 +36,13 @@ const LoginPage = () => {
             <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
         
-          <button type='submit'>Login</button>
+          <div>
+            <button type='submit'>Login</button>
+            <button type='submit'>Exit</button>
+          </div>
+          
+          <a href="" className='link'>forgot password?</a>
+
 
       </form>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import api from '../services/api.jsx';
+import "../pages/Register.css";
 
 const RegisterPage = () => {
 
@@ -35,6 +36,7 @@ const RegisterPage = () => {
 
   return (
     <div>
+      <h3>Register <span>Form</span></h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="">Username</label>
@@ -51,7 +53,10 @@ const RegisterPage = () => {
             <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
         
-          <button type='submit'>Register</button>
+          <div className='btn'>
+            <button type='submit'>Register</button>
+            <button type='submit'>Exit</button>
+          </div>
 
       </form>
     </div>

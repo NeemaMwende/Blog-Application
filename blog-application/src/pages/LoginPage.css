@@ -9,6 +9,18 @@ body {
     align-items: center;
     height: 100vh;
   }
+  h3{
+    text-align: center;
+    color: black;
+  }
+  span{
+    color: #2980b9;
+  }
+  .link{
+    font-style: italic;
+    font-size: 10px;
+    
+  }
   
   form {
     background-color: #fff;
