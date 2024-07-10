@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const [posts, getPosts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,10 +20,23 @@ const HomePage = () => {
     fetchPosts();
   },[]);
 
+  const handleView = (postId) => {
+    navigate(`/posts/${postId}`);
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      await api.deletePost(postId);
+      getPosts(posts.filter(post => post._id !== postId));
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  }
+
   return (
-    <div>
+    <div className='home'>
       <h1>Blog Website</h1>
-      <div className='home'>
+      <div className='homediv'>
       <ul className='blogpost'>
         {posts.map((post) => (
           <li key={post._id} className='blogpoststyle'>
@@ -30,8 +45,8 @@ const HomePage = () => {
             <small>by : {post.author.username}</small>
             <small>email : {post.author.email}</small>
             <div className='btn'>
-              <button>View</button>
-              <button>Delete</button>
+              <button onClick={()=> handleView(post._id)}>View</button>
+              <button onClick={()=> handleDelete(post._id)}>Delete</button>
             </div>
             
           </li>
