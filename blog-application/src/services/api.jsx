@@ -29,4 +29,9 @@ const getPosts = async (userData) => {
     return response.data;
 }
 
+const deletePost = async (userData) => {
+    const response = await axios.delete(`${API_URL}/posts`, userData);
+    return response.data;
+}
+
 export default { register, login, getPosts, createPost };

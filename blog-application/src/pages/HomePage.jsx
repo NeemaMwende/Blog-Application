@@ -24,6 +24,7 @@ const HomePage = () => {
     navigate(`/posts/${postId}`);
   };
 
+  
   const handleDelete = async (postId) => {
     try {
       await api.deletePost(postId);
@@ -31,7 +32,7 @@ const HomePage = () => {
     } catch (error) {
       console.error('Error deleting post:', error);
     }
-  }
+  };
 
   return (
     <div className='home'>
@@ -45,8 +46,8 @@ const HomePage = () => {
             <small>by : {post.author.username}</small>
             <small>email : {post.author.email}</small>
             <div className='btn'>
-              <button onClick={()=> handleView(post._id)}>View</button>
-              <button onClick={()=> handleDelete(post._id)}>Delete</button>
+            <button onClick={() => handleView(post._id)}>View</button>
+            <button onClick={() => handleDelete(post._id)}>Delete</button>
             </div>
             
           </li>
