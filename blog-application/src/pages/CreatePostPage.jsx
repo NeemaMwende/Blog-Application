@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import api from '../services/api';
+import "../pages/create.css";
+// import "../services/CreatePostPage.css";
 
 const CreatePostPage = () => {
   const [title, setTitle] = useState('');
