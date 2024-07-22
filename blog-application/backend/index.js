@@ -3,10 +3,11 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import path from 'path';
 
-//routes
-import authRoute from '../backend/routes/auth.js';
-import postRoute from '../backend/routes/posts.js';
+// Routes
+import authRoute from './routes/auth.js';
+import postRoute from './routes/posts.js';
 
 dotenv.config();
 const app = express();
@@ -14,20 +15,28 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors({ origin: true, credentials: true }));
 
-mongoose.connect(
-    process.env.MONGO_URI,
-    // { useNewUrlParser: true, useUnifiedTopology: true }
-)
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
 .then(() => {
-    console.log("database connected");
+    console.log("Database connected");
 })
 .catch((error) => {
     console.error("Error connecting to the database:", error);
 });
 
-//Middleware
+// Middleware
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
+
+// Serve static files from the React app
+const __dirname = path.resolve();  // To get the current directory in ES6 modules
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // Error handling middleware
 // app.use((err, req, res, next) => {
